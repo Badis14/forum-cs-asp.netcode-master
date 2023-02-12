@@ -1,0 +1,60 @@
+﻿@model ForumApplication.ViewModels.PostTheme
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PostTheme</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="message" class="control-label"></label>
+                <input asp-for="message" class="form-control" />
+                <span asp-validation-for="message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="datecreationmessage" class="control-label"></label>
+                <input asp-for="datecreationmessage" class="form-control" />
+                <span asp-validation-for="datecreationmessage" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="sujet" /> @Html.DisplayNameFor(model => model.sujet)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="motscle" class="control-label"></label>
+                <input asp-for="motscle" class="form-control" />
+                <span asp-validation-for="motscle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="themes" class="control-label"></label>
+                <select asp-for="themeId" class="form-control" size="1" asp-items="@(new
+                SelectList(Model.themes, "id", "titre"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="utilisateurs" class="control-label"></label>
+                <select asp-for="utilisateurId" class="form-control" size="1" asp-items="@(new
+                SelectList(Model.utilisateurs, "id", "pseudonyme"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
